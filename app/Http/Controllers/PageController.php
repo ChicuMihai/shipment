@@ -19,17 +19,17 @@ class PageController extends Controller
            'title'=>'required',
            'body'=>'required'
         ]);
+
+
+        $path = request()->file('img')->store('img');
         Page::create([
             'title'=>request('title'),
-            'body'=>request('body')
-
+            'body'=>request('body'),
+            'picture'=>$path
         ]);
-        return redirect('pages.page');
-
-
+        return  redirect()->back()->with('message', 'Page added successfully!');;
     }
     public function show(Page $page){
-       // $page=Page::find($id);
         return view('pages.show',compact('page'));
 
     }

@@ -9,8 +9,15 @@
         <div class="col-md-8 col-md-offset-2">
 
             <h1>Create new page</h1>
-            <form action="{{url("pages")}}" method="POST">
+            <form action="{{url("pages")}}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
+      @if(Session::has('message'))
+    <div class="alert alert-success">
+        {{ Session::get('message') }}
+    </div>
+@endif
+              
+
                 <div class="form-group">
                     <label for="title">Title <span class="require">*</span></label>
                     <input type="text" class="form-control" name="title" />
@@ -19,6 +26,10 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <span class="require">*</span> <textarea rows="5" class="form-control" name="body" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Upload picture</label>
+    <input type="file" class="form-control-file" name="img">
                 </div>
 
                 <div class="form-group">
@@ -33,6 +44,7 @@
                         Cancel
                     </button>
                 </div>
+
 
             </form>
         </div>
