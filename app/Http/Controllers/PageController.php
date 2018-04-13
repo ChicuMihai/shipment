@@ -24,8 +24,8 @@ class PageController extends Controller
         if(request()->hasFile('img')){
             $image=request()->file('img');
             $filename=time().'.'.$image->getClientOriginalExtension();
-            $location=public_path('images/'.$filename);
-            $image->store($location);
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath,$filename);
         }
         Page::create([
             'title'=>request('title'),
