@@ -27,4 +27,3 @@ Route::get('/pages/{page}','PageController@show');
 Route::get('/pages/delete/{page}','PageController@delete');
 
 
-

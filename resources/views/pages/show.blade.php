@@ -32,7 +32,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img src="{{asset($page->picture)}}">
+            <img src="{{asset('images/'.$page->picture)}}">
 
             <hr>
 

@@ -21,11 +21,16 @@ class PageController extends Controller
         ]);
 
 
-        $path = request()->file('img')->store('img');
+        if(request()->hasFile('img')){
+            $image=request()->file('img');
+            $filename=time().'.'.$image->getClientOriginalExtension();
+            $location=public_path('images/'.$filename);
+            $image->store($location);
+        }
         Page::create([
             'title'=>request('title'),
             'body'=>request('body'),
-            'picture'=>$path
+            'picture'=>$filename
         ]);
         return  redirect()->back()->with('message', 'Page added successfully!');;
     }
