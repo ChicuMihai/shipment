@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -20,12 +21,16 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/')->with('message', 'Logged Out!');;
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

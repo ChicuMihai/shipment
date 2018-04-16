@@ -26,6 +26,13 @@
                     <a class="nav-link" href="{{url('pages/create')}}">Create Page</a>
                 </li>
             </ul>
+            @if(Auth::guest())
+            <a class="ml-auto nav-link " href="{{url('login')}}">Login</a>
+            @else
+            <a class="m1-auto nba" href="{{ url('logout') }}">
+                Logout
+            </a>
+            @endif
         </div>
     </nav>
 </header>

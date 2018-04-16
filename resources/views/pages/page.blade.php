@@ -41,6 +41,7 @@
                         <h1 class="card-title pricing-card-title">{{$page->body}}<small class="text-muted"></small></h1>
                         <a href="{{url('pages',$page->id)}}" class="btn btn-info" role="button">View</a>
                         <a href="{{url('pages/delete',$page->id)}}" class="btn btn-danger" role="button">Delete</a>
+                        <a href="{{url('pages/edit',$page->id)}}" class="btn btn-danger" role="button">Edit</a>
                     </div>
             </div>
         @endforeach

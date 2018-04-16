@@ -7,6 +7,9 @@ use App\Page;
 
 class PageController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',['except'=>'index']);
+    }
     public function index(){
         $pages=Page::latest()->get();
         return view ('pages.page',compact('pages'));
@@ -32,15 +35,40 @@ class PageController extends Controller
             'body'=>request('body'),
             'picture'=>$filename
         ]);
-        return  redirect()->back()->with('message', 'Page added successfully!');;
+        return  redirect()->back()->with('message', 'Page added successfully!');
     }
     public function show(Page $page){
         return view('pages.show',compact('page'));
 
     }
     public function delete(Page $page){
+        $path=public_path('/images'.'/'.$page->picture);
+        \File::delete($path);
         $page->delete();
         return back();
+
+    }
+    public function edit(Page $page){
+     return view('pages.edit',compact('page'));
+    }
+
+    public function update(Page $page){
+        if(request()->hasFile('img')){
+        $path=public_path('/images'.'/'.$page->picture);
+        \File::delete($path);
+            $image=request()->file('img');
+            $filename=time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath,$filename);
+        }
+        $page->update([
+            'title'=>request('title'),
+            'body'=>request('body'),
+            'picture'=>$filename
+
+        ]);
+        return view('pages.page');
+      
 
     }
 }
