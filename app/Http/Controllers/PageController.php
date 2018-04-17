@@ -68,13 +68,14 @@ class PageController extends Controller {
     {
         $path = public_path('/images' . '/' . $page->picture);
         \File::delete($path);
+        $filename = '';
         if (request()->hasFile('img')) {
             $image = request()->file('img');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $filename);
         }
-        $filename = '';
+
         $page->update([
             'title' => request('title'),
             'body' => request('body'),

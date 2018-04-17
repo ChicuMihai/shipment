@@ -31,8 +31,9 @@
 
             <hr>
 
-            <!-- Preview Image -->
+            @if(!empty($page->picture))
             <img src="{{asset('images/'.$page->picture)}}">
+            @endif
 
             <hr>
 
