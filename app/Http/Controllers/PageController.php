@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use App\Page;
 
 class PageController extends Controller {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => 'index']);
-    }
-
     public function index()
     {
         $pages = Page::latest()->get();
