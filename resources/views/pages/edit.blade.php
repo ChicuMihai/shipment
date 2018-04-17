@@ -8,10 +8,10 @@
 
         <div class="col-md-8 col-md-offset-2">
 
-            <h1>Edit page</h1>
-            <form action="{{url('/pages/'.$page->id)}}" method="POST" enctype="multipart/form-data">
+            <h1>Edit Page</h1>
+            <form action="{{url("/pages/".$page->id)}}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
-               {{ method_field('PATCH') }}
+                {{method_field('PATCH')}}
                 @if(Session::has('message'))
                     <div class="alert alert-success">
                         {{ Session::get('message') }}
@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        Create
+                        Update
                     </button>
                     <button class="btn btn-default">
                         Cancel

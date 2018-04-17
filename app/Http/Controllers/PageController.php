@@ -5,70 +5,80 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Page;
 
-class PageController extends Controller
-{
-    public function __construct(){
-        $this->middleware('auth',['except'=>'index']);
+class PageController extends Controller {
+    public function index()
+    {
+        $pages = Page::latest()->get();
+        return view('pages.page', compact('pages'));
     }
-    public function index(){
-        $pages=Page::latest()->get();
-        return view ('pages.page',compact('pages'));
-    }
-    public function create (){
+
+    public function create()
+    {
         return view('pages.create');
     }
-    public function store(){
-        $this->validate(request(),[
-           'title'=>'required',
-           'body'=>'required'
+
+    public function store()
+    {
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
         ]);
 
 
-        if(request()->hasFile('img')){
-            $image=request()->file('img');
-            $filename=time().'.'.$image->getClientOriginalExtension();
+        if (request()->hasFile('img')) {
+            $image = request()->file('img');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $image->move($destinationPath,$filename);
+            $image->move($destinationPath, $filename);
         }
         Page::create([
-            'title'=>request('title'),
-            'body'=>request('body'),
-            'picture'=>$filename
+            'title' => request('title'),
+            'body' => request('body'),
+            'picture' => $filename
         ]);
-        return  redirect()->back()->with('message', 'Page added successfully!');
+        return redirect()->back()->with('message', 'Page added successfully!');
     }
-    public function show(Page $page){
-        return view('pages.show',compact('page'));
+
+    public function show(Page $page)
+    {
+        return view('pages.show', compact('page'));
 
     }
-    public function delete(Page $page){
-        $path=public_path('/images'.'/'.$page->picture);
+
+    public function delete(Page $page)
+    {
+        $path = public_path('/images' . '/' . $page->picture);
         \File::delete($path);
         $page->delete();
         return back();
 
     }
-    public function edit(Page $page){
-     return view('pages.edit',compact('page'));
+
+    public function edit(Page $page)
+    {
+        return view('pages.edit', compact('page'));
     }
 
-    public function update(Page $page){
-        if(request()->hasFile('img')){
-        $path=public_path('/images'.'/'.$page->picture);
+    public function update(Page $page)
+    {
+        $path = public_path('/images' . '/' . $page->picture);
         \File::delete($path);
-            $image=request()->file('img');
-            $filename=time().'.'.$image->getClientOriginalExtension();
+        $filename = '';
+        if (request()->hasFile('img')) {
+            $image = request()->file('img');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $image->move($destinationPath,$filename);
+            $image->move($destinationPath, $filename);
         }
+
         $page->update([
-            'title'=>request('title'),
-            'body'=>request('body'),
-            'picture'=>$filename
+            'title' => request('title'),
+            'body' => request('body'),
+            'picture' => $filename
 
         ]);
-        return view('pages.page');
-      
+        return view('welcome');
+
 
     }
 }
