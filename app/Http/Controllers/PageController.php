@@ -24,7 +24,7 @@ class PageController extends Controller {
             'body' => 'required'
         ]);
 
-
+            $filename='';
         if (request()->hasFile('img')) {
             $image = request()->file('img');
             $filename = time() . '.' . $image->getClientOriginalExtension();

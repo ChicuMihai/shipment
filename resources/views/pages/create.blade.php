@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <span class="require">*</span> <textarea rows="5" class="form-control" name="body"></textarea>
+                    <span class="require">*</span> <textarea rows="6" class="form-control" name="body"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Upload picture</label>

@@ -41,7 +41,7 @@
             <p class="lead">
 
             <blockquote class="blockquote">
-                <p class="mb-0">{{$page->body}}</p>
+                <p class="mb-0">{!!$page->body !!}</p>
                 <footer class="blockquote-footer">Someone famous in
                     <cite title="Source Title">Source Title</cite>
                 </footer>
