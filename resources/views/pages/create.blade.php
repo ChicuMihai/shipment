@@ -2,7 +2,28 @@
 
 @include("layouts.navbar")<br><br>
 <body>
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
+<!-- Include Editor style. -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<!-- Create a tag that we will use as the editable area. -->
+<!-- You can use a div tag as well. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+ <script>
+  $(function() {
+    $('textarea').froalaEditor({
+      // Set custom buttons with separator between them.
+      toolbarButtons: ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html'],
+      toolbarButtonsXS: ['undo', 'redo' , '-', 'bold', 'italic', 'underline']
+    })
+  });
+</script>
+</head>
 <div class="container">
     <div class="row">
 
