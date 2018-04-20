@@ -6,14 +6,14 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Include Editor style. -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{asset('/css/froala_style.min.css')}}" rel="stylesheet" type="text/css" />
 <!-- Create a tag that we will use as the editable area. -->
 <!-- You can use a div tag as well. -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 <!-- Include Editor JS files. -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<script type="text/javascript" src="{{asset('/js/froala_editor.min.js')}}"></script>
  <script>
   $(function() {
     $('textarea').froalaEditor({
@@ -41,12 +41,12 @@
 
                 <div class="form-group">
                     <label for="title">Title <span class="require">*</span></label>
-                    <input type="text" class="form-control" name="title"/>
+                    <input type="text" class="form-control" name="title" required />
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <span class="require">*</span> <textarea rows="6" class="form-control" name="body"></textarea>
+                    <span class="require">*</span> <textarea rows="6" class="form-control" name="body" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Upload picture</label>

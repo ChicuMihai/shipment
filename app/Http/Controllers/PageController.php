@@ -61,6 +61,11 @@ class PageController extends Controller {
 
     public function update(Page $page)
     {
+         $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $path = public_path('/images' . '/' . $page->picture);
         \File::delete($path);
         $filename = '';

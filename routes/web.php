@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/pages','PageController@index');
 Route::get('/pages/create','PageController@create');
-Route::get('/pages/show','PageController@show');
 Route::post('/pages','PageController@store');
 Route::get('/pages/{page}','PageController@show');
 Route::get('/pages/delete/{page}','PageController@delete');

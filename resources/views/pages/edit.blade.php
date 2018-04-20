@@ -1,4 +1,4 @@
-<html>
+'<html>
 
 @include("layouts.navbar")<br><br>
 <body>
